@@ -28,8 +28,8 @@ describe Promoter::ContactList do
     stub_request(:delete, "https://app.promoter.io/api/lists/23/contacts/77").
          to_return(status: 200, body: {result: true}.to_json)
 
-    result = Promoter::ContactList.remove_contact(contact_list_id: 23,
+    response = Promoter::ContactList.remove_contact(contact_list_id: 23,
                                                   contact_id: 77)
-    expect(result[:result]).to be_truthy
+    expect(response["result"]).to be_truthy
   end
 end

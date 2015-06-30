@@ -14,8 +14,9 @@ module Promoter
     end
 
     def self.post(url, params)
+      response_format = params.delete(:response_format) || :json
       response = HTTParty.post(url, body: params.to_json, headers: auth_header)
-      parse_response(response)
+      parse_response(response, response_format)
     end
 
     def self.delete(url)
@@ -25,10 +26,14 @@ module Promoter
 
     private
 
-    def self.parse_response(response)
+    def self.parse_response(response, response_format=:json)
       check_for_error(response.response.code)
       display_debug(response.body)
-      JSON.parse(response.body.to_s)
+      if response_format == :json
+        JSON.parse(response.body.to_s)
+      else
+        response.body.to_s
+      end
     end
 
     def self.display_debug(response)

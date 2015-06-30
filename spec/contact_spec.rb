@@ -34,7 +34,7 @@ describe Promoter::Contact do
   it 'creates a contact' do
     params = { email: 'chris@lexoo.co.uk' }
 
-    stub_request(:post, "https://app.promoter.io/api/contacts").
+    stub_request(:post, "https://app.promoter.io/api/contacts/").
         with(body: params.to_json).
         to_return(status: 200, body: fixture('single_contact.json'))
 

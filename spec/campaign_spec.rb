@@ -23,18 +23,18 @@ describe Promoter::Campaign do
   end
 
   it 'sends surveys' do
-    stub_request(:post, "https://app.promoter.io/api/campaigns/77/send-surveys").
+    stub_request(:post, "https://app.promoter.io/api/campaigns/77/send-surveys/").
          with(body: {all_contacts: false}.to_json).
-         to_return(status: 200, body: ["surveys sent"].to_json)
+         to_return(status: 200, body: "Success\, surveys sent\.")
 
     result = Promoter::Campaign.send_surveys(77)
     expect(result).to be_truthy
   end
 
   it 'sends surveys to all contacts' do
-    stub_request(:post, "https://app.promoter.io/api/campaigns/77/send-surveys").
+    stub_request(:post, "https://app.promoter.io/api/campaigns/77/send-surveys/").
          with(body: {all_contacts: true}.to_json).
-         to_return(status: 200, body: ["surveys sent"].to_json)
+         to_return(status: 200, body: "Success\, surveys sent\.")
 
     result = Promoter::Campaign.send_surveys(77, true)
     expect(result).to be_truthy
