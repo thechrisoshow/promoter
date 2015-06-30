@@ -46,7 +46,7 @@ describe Promoter::Feedback do
       url = "https://app.promoter.io/api/feedback/?survey_campaign=2"
       stub_get_request(url, 'feedback_by_campaign.json')
 
-      result = Promoter::Feedback.all(campaign_id: 2)
+      result = Promoter::Feedback.all(survey_campaign: 2)
 
       expect(result.count).to eq(1)
 

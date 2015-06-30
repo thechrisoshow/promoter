@@ -43,10 +43,6 @@ module Promoter
     private
 
     def self.query_string(attrs)
-      # campaign_id is preferable to survey_campaign (which is what promoter expects)
-      if attrs.has_key?(:campaign_id)
-        attrs[:survey_campaign] = attrs.delete(:campaign_id)
-      end
       URI.encode_www_form(attrs)
     end
 

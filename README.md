@@ -1,10 +1,12 @@
 # Promoter
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/promoter`. To experiment with that code, run `bin/console` for an interactive prompt.
+promoter is a wrapper for the promoter.io REST API.
 
-TODO: Delete this and the text above, and describe your gem
+You can find a link to the promoter.io api docs here: https://promoterio.github.io/api/
 
 ## Installation
+
+First off you need to grab your [promoter.io](http://www.promoter.io) api.
 
 Add this line to your application's Gemfile:
 
@@ -20,15 +22,99 @@ Or install it yourself as:
 
     $ gem install promoter
 
-## Usage
+Set your api key with:
+```ruby
+Promoter.api_key = 'YOUR API KEY'
+```
+(Put this into an initializer if using with Rails.)
 
-TODO: Write usage instructions here
+## Feedback
+### Get all feedback
 
-## Development
+```ruby
+Promoter::Feedback.all(score: 8) # => returns all feedback with a score of 8
+```
 
-After checking out the repo, run `bin/setup` to install dependencies. Then, run `bin/console` for an interactive prompt that will allow you to experiment.
+Possible filters:
+  ```score```                    Filter by the score
+  ```score_type```               Filters by the score type: ```promoter```, ```detractor```, ```passive```
+  ```survey_campaign```          Filter by the campaign id
+  ```survey_campaign_status```   Filter by the campaign status: ```ACTIVE```, ```COMPLETE```
 
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release` to create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
+### Get a specific feedback
+
+```ruby
+Promoter::Feedback.find(79) #=> id of the feedback to return
+```
+
+## Contacts
+
+### Get all contacts
+
+```ruby
+Promoter::Contact.all(2) # => this is paginated - returns page 2 of results
+```
+
+### Get a specific contact
+
+```ruby
+Promoter::Contact.find(897)
+```
+
+### Create a contact
+
+```ruby
+Promoter::Contact.create(email: "chris@lexoo.co.uk",    # required
+                         first_name: "Chris",           # optional
+                         last_name: "O'Sullivan",       # optional
+                         contact_list: [599],           # array of contact list ids to add to
+                         campaign: 78,                  # campaign which this belongs to
+                         attributes: { plan: 'silver' } # any extra data you want to add to the contact
+                         send: false )                  # set this to true to send the NPS immediately
+```
+
+## Campaigns
+### Get all campaigns
+
+```ruby
+Promoter::Campaign.all(2) # => this is paginated - returns page 2 of results
+```
+
+### Send surveys for a campaign
+
+```ruby
+Promoter::Campaign.send_surveys(33, false)
+```
+
+This takes two parameters, the campaign id, and a boolean as to send out surveys to ALL of the customers for the campaign. (This is defaulted to false!)
+
+## Contact lists
+### Get all contact lists
+
+```ruby
+Promoter::ContactList.all(2)  # => this is paginated - returns page 2 of results
+```
+
+### Get All Contacts for a Contact List
+
+```ruby
+Promoter::ContactList.contact_ids_for(2)  
+# => returns an array of contact ids for a contact list id
+```
+
+### Remove a contact from a contact list
+
+```ruby
+Promoter::ContactList.remove_contact(contact_list_id: 7899,
+                                     contact_id: 15777)  
+```
+
+## Metrics
+
+```ruby
+Promoter::Metric.all
+# => returns a list of interesting metrics that promoter has for your account
+```
 
 ## Contributing
 

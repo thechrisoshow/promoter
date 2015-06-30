@@ -12,8 +12,8 @@ module Promoter
       @organization_nps = attrs["organization_nps"].to_f
     end
 
-    def self.all(page=1)
-      response = Request.get("#{API_URL}/?page=#{page}")
+    def self.all
+      response = Request.get("#{API_URL}/")
       response['results'].map {|attrs| new(attrs)}
     end
 

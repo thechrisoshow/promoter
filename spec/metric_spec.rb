@@ -3,11 +3,7 @@ require 'spec_helper'
 describe Promoter::Metric do
 
   it 'returns all metrics' do
-    # stub_request(:get, "https://app.promoter.io/metrics/?page=1").
-    #     with(:headers => {'Authorization'=>'Token ribeyeeulorem', 'Content-Type'=>'application/json'}).
-    #     to_return(:status => 200, :body => "", :headers => {})
-
-    stub_request(:get, "https://app.promoter.io/api/metrics/?page=1").
+    stub_request(:get, "https://app.promoter.io/api/metrics/").
          to_return(status: 204, body: fixture('metrics.json'))
     result = Promoter::Metric.all
 
