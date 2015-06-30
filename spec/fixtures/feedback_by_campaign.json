@@ -1,0 +1,21 @@
+{
+    "count": 1,
+    "next": null,
+    "previous": null,
+    "results": [
+        {
+            "id": 5200,
+            "href": "https://app.promoter.io/api/feedback/5200/",
+            "contact": {
+                "first_name": "Hank",
+                "last_name": "Zakroff",
+                "id": 101,
+                "email": "hank.zakroff@email.com"
+            },
+            "score": 2,
+            "score_type": "detractor",
+            "comment": "Website doesn't work. Pricing is expensive.",
+            "posted_date": "2014-10-10T8:20:00Z"
+        }
+    ]
+}

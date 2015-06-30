@@ -1,0 +1,17 @@
+{
+    "count": 1,
+    "next": null,
+    "previous": null,
+    "results": [
+        {
+            "id":12345,
+            "email":"kate@mac.com",
+            "first_name":"Kate",
+            "last_name":"Bell",
+            "created_date":"2014-12-12T10:00:00Z",
+            "attributes": {
+                "plan":"bronze"
+            }
+        }
+    ]
+}

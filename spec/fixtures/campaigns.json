@@ -1,0 +1,16 @@
+{
+  "count":1,
+  "next":null,
+  "previous":null,
+  "results":[
+    {
+        "id":1,
+        "name":"My Campaign's Name",
+        "all_count": 1,
+        "drip_duration": 7,
+        "eligible_count": 5,
+        "last_surveyed_date": "2014-10-10T12:00:00Z",
+        "launch_date": null
+    }
+  ]
+}

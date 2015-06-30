@@ -1,0 +1,21 @@
+{
+    "count": 1,
+    "next": null,
+    "previous": null,
+    "results": [
+        {
+            "id": 1600,
+            "href": "https://app.promoter.io/api/feedback/1600/",
+            "contact": {
+                "first_name": "Kate",
+                "last_name": "Bell",
+                "id": 60000,
+                "email": "kate-bell@email.com"
+            },
+            "score": 8,
+            "score_type": "passive",
+            "comment": "Price is great! Service is ok.",
+            "posted_date": "2014-12-01T20:00:00Z"
+        }
+    ]
+}

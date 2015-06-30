@@ -1,0 +1,15 @@
+{
+    "id": 270,
+    "href": "https://app.promoter.io/api/feedback/270/",
+    "followup_href": "https://app.promoter.io/org/50/campaign/101/responses/all/response/1600/",
+    "contact": {
+        "first_name": "Anna",
+        "last_name": "Haro",
+        "id": 50000,
+        "email": "anna-haro@email.com"
+    },
+    "score": 9,
+    "score_type": "promoter",
+    "comment": "Amazing product! Love the promo flyers!",
+    "posted_date": "2014-12-01T11:00:00Z"
+}
