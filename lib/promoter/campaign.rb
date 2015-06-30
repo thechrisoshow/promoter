@@ -31,7 +31,8 @@ module Promoter
     #                          last sent surveys. The default behavior is when
     #                          all_contacts is set to false.
     def self.send_surveys(campaign_id, all_contacts=false)
-      response = Request.post("#{API_URL}/#{campaign_id}/send-surveys",
+      raise "this doesn't work needs to not parse the response as json"
+      response = Request.post("#{API_URL}/#{campaign_id}/send-surveys/",
                               { all_contacts: all_contacts })
       response[0] == 'surveys sent'
     end
