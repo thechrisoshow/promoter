@@ -45,7 +45,7 @@ module Promoter
     #                          be associated to a default generated contact list
     #                          for your given organization.
     def self.create(attributes)
-      response = Request.post(API_URL, attributes)
+      response = Request.post(API_URL + "/", attributes)
       new(response)
     end
 

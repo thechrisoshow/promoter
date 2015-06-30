@@ -33,10 +33,9 @@ module Promoter
 
     def self.display_debug(response)
       if Promoter.debug
-        debug_message = "-" * 20 + " DEBUG " + "-" * 20
-        puts debug_message
+        puts "-" * 20 + " DEBUG " + "-" * 20
         puts response
-        puts debug_message
+        puts "-" * 18 + " END DEBUG " + "-" * 18
       end
     end
 
