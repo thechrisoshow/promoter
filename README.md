@@ -26,7 +26,7 @@ Set your api key with:
 ```ruby
 Promoter.api_key = 'YOUR API KEY'
 ```
-(Put this into an initializer if using with Rails.)
+(Put this into an initializer i.e. ```app/initializers/promoter.rb``` if using Rails.)
 
 ## Feedback
 ### Get all feedback
