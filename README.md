@@ -6,7 +6,7 @@ You can find the promoter.io api docs here: https://promoterio.github.io/api/
 
 ## Installation
 
-First off you need to grab your [promoter.io](http://www.promoter.io) api.
+First off you need to grab your [promoter.io](http://www.promoter.io) api key.
 
 Add this line to your application's Gemfile:
 
