@@ -2,7 +2,7 @@
 
 promoter is a wrapper for the promoter.io REST API.
 
-You can find the promoter.io api docs here: https://promoterio.github.io/api/
+You can find the promoter.io api docs here: http://docs.promoter.apiary.io/
 
 ## Installation
 
