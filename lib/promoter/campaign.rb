@@ -35,5 +35,18 @@ module Promoter
                               { all_contacts: all_contacts, response_format: :plain })
       response.match /Success\, surveys sent\./
     end
+
+    # Campaign Params
+    # Parameter                   Optional?  Description
+    # name                        no         The name of the campaign
+    # all_count                   yes        The number of contacts in the list associated to the campaign
+    # drip_duration               no         Drip setting chosen for the campaign in the app
+    # eligible_count              yes        The number of contacts eligible in the associated contact list. Takes into account unsubscribers and survey throttle in place
+    # last_surveyed_date          yes        The last time you launched surveys from this campaign
+    # launch_date                 yes        The date the campaign launched its first surveys
+    def self.create(attributes)
+      response = Request.post(API_URL + "/", attributes)
+      new(response)
+    end
   end
 end

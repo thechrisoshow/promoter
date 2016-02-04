@@ -40,4 +40,16 @@ describe Promoter::Campaign do
     expect(result).to be_truthy
   end
 
+  it 'creates a campaign' do
+    params = { name: 'Newest Campaign Name' }
+
+    stub_request(:post, "https://app.promoter.io/api/campaigns/").
+        with(body: params.to_json).
+        to_return(status: 200, body: fixture('single_campaign.json'))
+
+    campaign = Promoter::Campaign.create(name: "Newest Campaign Name")
+    expect(campaign.class).to eq(Promoter::Campaign)
+    expect(campaign.name).to eq("Newest Campaign Name")
+  end
+
 end
