@@ -43,4 +43,22 @@ describe Promoter::Contact do
     expect(contact.email).to eq("chris@lexoo.co.uk")
   end
 
+  it 'deletes a contact' do
+    stub_request(:get, "https://app.promoter.io/api/contacts/3162232").
+         to_return(status: 200, body: fixture('single_contact.json'))
+
+    stub_request(:post, "https://app.promoter.io/api/contacts/remove/").
+         to_return(status: 200, body: fixture('delete_contact.json'))
+
+    test_id = 3162232
+    contact = Promoter::Contact.find(test_id)
+
+    expect(Promoter::Contact).to eq(contact.class)
+
+    deleted = contact.destroy
+    expect(deleted.email).to eq(nil)
+    expect(deleted.first_name).to eq(nil)
+    expect(deleted.last_name).to eq(nil)
+  end
+
 end
