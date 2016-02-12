@@ -61,5 +61,10 @@ module Promoter
       new(response)
     end
 
+    def self.survey(attributes)
+      response = Request.post(API_URL + "/survey/", attributes)
+      new(response)
+    end
+
   end
 end
