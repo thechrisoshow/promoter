@@ -73,7 +73,31 @@ Promoter::Contact.create(email: "chris@lexoo.co.uk",    # required
                          send: false )                  # set this to true to send the NPS immediately
 ```
 
+### Remove a contact
+
+```ruby
+Promoter::Contact.destroy("chris@lexoo.co.uk")
+```
+
+### Survey a contact
+
+```ruby
+Promoter::Contact.survey(email: "chris@lexoo.co.uk",    # required
+                         first_name: "Chris",           # optional
+                         last_name: "O'Sullivan",       # optional
+                         campaign: 78,                  # campaign which this belongs to
+                         attributes: { plan: 'silver' })# any extra data you want to add to the contact
+```
+
 ## Campaigns
+### Create a campaign
+
+```ruby
+Promoter::Campaign.create(name: "Campaign Name",    # required
+                          contact_list: 1,          # required
+                          email: 1)                 # required
+```
+
 ### Get all campaigns
 
 ```ruby
@@ -89,6 +113,12 @@ Promoter::Campaign.send_surveys(33, false)
 This takes two parameters, the campaign id, and a boolean as to send out surveys to ALL of the customers for the campaign. (This is defaulted to false!)
 
 ## Contact lists
+### Create a contact list
+
+```ruby
+Promoter::ContactList.create(name: "List Name")    # required
+```
+
 ### Get all contact lists
 
 ```ruby
@@ -107,6 +137,38 @@ Promoter::ContactList.contact_ids_for(2)
 ```ruby
 Promoter::ContactList.remove_contact(contact_list_id: 7899,
                                      contact_id: 15777)  
+```
+
+### Remove a contact from a contact list by email
+
+```ruby
+Promoter::ContactList.remove_contact(email: "me@me.com",
+                                     contact_id: 15777)  
+```
+
+### Remove a contact from all contact lists
+
+```ruby
+Promoter::ContactList.remove_contact(contact_id: 15777)  
+```
+
+## Email Templates
+### Create an email template
+
+```ruby
+Promoter::EmailTemplate.create(name: "Campaign Name", # required
+               subject: "Email Name",                 # required
+               reply_to_email: "me@me.com",           # required
+               from_name: "Name",                     # required
+               intro_message: "Message",              # required
+               language: "en",                        # required
+               company_brand_product_name: "name")    # required
+```
+
+### Get all email templates
+
+```ruby
+Promoter::EmailTemplate.all # => returns all results
 ```
 
 ## Metrics

@@ -39,11 +39,8 @@ module Promoter
     # Campaign Params
     # Parameter                   Optional?  Description
     # name                        no         The name of the campaign
-    # all_count                   yes        The number of contacts in the list associated to the campaign
-    # drip_duration               no         Drip setting chosen for the campaign in the app
-    # eligible_count              yes        The number of contacts eligible in the associated contact list. Takes into account unsubscribers and survey throttle in place
-    # last_surveyed_date          yes        The last time you launched surveys from this campaign
-    # launch_date                 yes        The date the campaign launched its first surveys
+    # contact_list                no         The id of the contact list to associate to this campaign. The contact list will contain a list of contacts you will survey.
+    # email                       no         The id of the email template you will use to survey your contacts in the contact list.
     def self.create(attributes)
       response = Request.post(API_URL + "/", attributes)
       new(response)
