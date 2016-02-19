@@ -4,12 +4,13 @@ module Promoter
 
     API_URL =  "https://app.promoter.io/api/email"
 
-    attr_reader :id, :name, :subject, :reply_to_email, :from_name,
+    attr_reader :id, :name, :logo, :subject, :reply_to_email, :from_name,
                 :intro_message, :language, :company_brand_product_name
 
     def initialize(attrs)
       @id = attrs["id"]
       @name = attrs["name"]
+      @logo = attrs["logo"]
       @subject = attrs["subject"]
       @reply_to_email = attrs["reply_to_email"]
       @from_name = attrs["from_name"]
@@ -27,6 +28,10 @@ module Promoter
     # Parameter                   Optional?  Description
     # name                        no         The name of the email template
     # subject                     no         The subject line of the email template
+    # logo                        no         Base64 encoded image data (only) representing
+    #                                        the logo with your survey. It is also the logo 
+    #                                        they see when they respond to the survey with a score. 
+    #                                        The logo will be located at the top of the survey
     # reply_to_email              no         The reply-to email address for the email template
     # from_name                   no         The name the template is showing to be from
     # intro_message               no         This is the message that appears just above 
