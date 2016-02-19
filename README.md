@@ -158,6 +158,7 @@ Promoter::ContactList.remove_contact(contact_id: 15777)
 ```ruby
 Promoter::EmailTemplate.create(name: "Campaign Name", # required
                subject: "Email Name",                 # required
+               logo: "<base64EncodedImageData>",      # required
                reply_to_email: "me@me.com",           # required
                from_name: "Name",                     # required
                intro_message: "Message",              # required
