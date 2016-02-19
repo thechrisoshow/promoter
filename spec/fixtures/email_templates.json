@@ -6,6 +6,7 @@
     {
       "id": 1,
       "name": "My Email Template",
+      "logo": "My Logo",
       "subject": "Take 60 seconds to answer this survey",
       "reply_to_email": "feedback@company.com",
       "from_name": "John Doe",
