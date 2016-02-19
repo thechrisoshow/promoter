@@ -15,6 +15,7 @@ describe Promoter::EmailTemplate do
     first_result = result.first
     expect(first_result.id).to eq(1)
     expect(first_result.name).to eq("My Email Template")
+    expect(first_result.logo).to eq("My Logo")
     expect(first_result.subject).to eq("Take 60 seconds to answer this survey")
     expect(first_result.reply_to_email).to eq("feedback@company.com")
     expect(first_result.from_name).to eq("John Doe")
