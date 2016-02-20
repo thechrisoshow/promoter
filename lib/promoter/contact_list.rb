@@ -24,7 +24,29 @@ module Promoter
     def self.remove_contact(params={})
       contact_list_id = params[:contact_list_id]
       contact_id = params[:contact_id]
-      Request.delete("#{API_URL}/#{contact_list_id}/contacts/#{contact_id}")
+      contact_email = params[:email]
+
+      if contact_list_id
+        if contact_id
+          Request.delete("#{API_URL}/#{contact_list_id}/contacts/#{contact_id}")
+        elsif contact_email
+          Request.post("#{API_URL}/#{contact_list_id}/remove/", {email: contact_email})
+        else
+          raise "Not enough information provided to remove a contact"
+        end
+      elsif contact_email
+          Request.post("#{API_URL}/remove/", {email: contact_email})
+      else
+        raise "Not enough information provided to remove a contact"
+      end
+    end
+
+    # Campaign Params
+    # Parameter                   Optional?  Description
+    # name                        no         The name of the campaign
+    def self.create(attributes)
+      response = Request.post(API_URL + "/", attributes)
+      new(response)
     end
 
   end

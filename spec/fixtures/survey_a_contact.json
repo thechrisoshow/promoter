@@ -1,0 +1,9 @@
+{
+  "campaign": 99,
+  "email": "kate@mac.com",
+  "first_name": "Kate",
+  "last_name": "Bell",
+  "attributes": {
+    "plan": "bronze"
+  }
+}

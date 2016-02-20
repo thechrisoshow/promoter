@@ -32,4 +32,35 @@ describe Promoter::ContactList do
                                                   contact_id: 77)
     expect(response["result"]).to be_truthy
   end
+
+  it 'creates a contact list' do
+    params = { name: 'My Contact List' }
+
+    stub_request(:post, "https://app.promoter.io/api/lists/").
+        with(body: params.to_json).
+        to_return(status: 200, body: fixture('single_contact_list.json'))
+
+    contact_list = Promoter::ContactList.create(name: "My Contact List")
+    expect(contact_list.class).to eq(Promoter::ContactList)
+    expect(contact_list.name).to eq("My Contact List")
+  end
+
+  it 'removes a contact from list by email' do
+    stub_request(:post, "https://app.promoter.io/api/lists/23/remove/").
+         to_return(status: 200, body: fixture('single_contact.json'))
+
+    response = Promoter::ContactList.remove_contact(contact_list_id: 23,
+                                                  email: "kate@mac.com")
+    expect(response["result"]).to eq(nil)
+  end
+
+  it 'removes a contact from all lists' do
+    stub_request(:post, "https://app.promoter.io/api/lists/remove/").
+         to_return(status: 200, body: fixture('delete_contact.json'))
+
+    response = Promoter::ContactList.remove_contact(email: "kate@mac.com")
+
+    expect(response["count"]).to eq(0)
+  end
+
 end

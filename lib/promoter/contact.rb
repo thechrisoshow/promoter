@@ -15,6 +15,10 @@ module Promoter
       @attributes = attrs["attributes"]
     end
 
+    def destroy
+      Contact.destroy(self.email)
+    end
+
     def self.all(page=1)
       response = Request.get("#{API_URL}/?page=#{page}")
       response['results'].map {|attrs| new(attrs)}
@@ -22,6 +26,14 @@ module Promoter
 
     def self.find(id)
       response = Request.get("#{API_URL}/#{id}")
+      new(response)
+    end
+
+    def self.destroy(email)
+      attributes = {
+        email: email
+      }
+      response = Request.post("#{API_URL}/remove/", attributes)
       new(response)
     end
 
@@ -46,6 +58,11 @@ module Promoter
     #                          for your given organization.
     def self.create(attributes)
       response = Request.post(API_URL + "/", attributes)
+      new(response)
+    end
+
+    def self.survey(attributes)
+      response = Request.post(API_URL + "/survey/", attributes)
       new(response)
     end
 

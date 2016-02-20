@@ -35,5 +35,15 @@ module Promoter
                               { all_contacts: all_contacts, response_format: :plain })
       response.match /Success\, surveys sent\./
     end
+
+    # Campaign Params
+    # Parameter                   Optional?  Description
+    # name                        no         The name of the campaign
+    # contact_list                no         The id of the contact list to associate to this campaign. The contact list will contain a list of contacts you will survey.
+    # email                       no         The id of the email template you will use to survey your contacts in the contact list.
+    def self.create(attributes)
+      response = Request.post(API_URL + "/", attributes)
+      new(response)
+    end
   end
 end

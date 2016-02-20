@@ -1,0 +1,9 @@
+{
+  "id": 12345,
+  "name": "Newest Campaign Name",
+  "all_count": 10,
+  "drip_duration": 10,
+  "eligible_count": 10,
+  "last_surveyed_date": null,
+  "launch_date": null
+}

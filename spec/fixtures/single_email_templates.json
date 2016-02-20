@@ -1,0 +1,11 @@
+{
+  "id": 1,
+  "name": "New Email Template",
+  "logo": "New Logo",
+  "subject": "Take 60 seconds to answer this survey",
+  "reply_to_email": "feedback@company.com",
+  "from_name": "John Doe",
+  "intro_message": "Your feedback will help us improve.",
+  "language": "en",
+  "company_brand_product_name": "Pear Computers"
+}
