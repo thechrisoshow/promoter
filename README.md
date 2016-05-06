@@ -33,6 +33,7 @@ Promoter.api_key = 'YOUR API KEY'
 
 ```ruby
 Promoter::Feedback.all(score: 8) # => returns all feedback with a score of 8
+# this is paginated. Pass page: 2 to get the second page (I know, this is different from the other api calls! This will be fixed in later versions)
 ```
 
 Possible filters:
