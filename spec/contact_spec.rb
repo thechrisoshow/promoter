@@ -2,10 +2,33 @@ require 'spec_helper'
 
 describe Promoter::Contact do
 
-  it 'returns all contacts' do
-    stub_request(:get, "https://app.promoter.io/api/contacts/?page=1").
+  it 'returns all contacts paginated' do
+    stub_request(:get, "https://app.promoter.io/api/contacts/?page=2").
          to_return(status: 200, body: fixture('contacts.json'))
-    result = Promoter::Contact.all
+    result = Promoter::Contact.all(page: 2)
+
+    expect(result.count).to eq(1)
+
+    expect(result.class).to eq(Array)
+    expect(result[0].class).to eq(Promoter::Contact)
+  end
+
+  it 'filters for an email' do
+    url = "https://app.promoter.io/api/contacts/?email=chris@lexoo.co.uk&page=1"
+    stub_request(:get, url).
+         to_return(status: 200, body: fixture('contacts.json'))
+    result = Promoter::Contact.all(email: 'chris@lexoo.co.uk')
+
+    expect(result.count).to eq(1)
+
+    expect(result.class).to eq(Array)
+    expect(result[0].class).to eq(Promoter::Contact)
+  end
+
+  it 'returns all contacts paginated (deprecated style)' do
+    stub_request(:get, "https://app.promoter.io/api/contacts/?page=2").
+         to_return(status: 200, body: fixture('contacts.json'))
+    result = Promoter::Contact.all(2)
 
     expect(result.count).to eq(1)
 

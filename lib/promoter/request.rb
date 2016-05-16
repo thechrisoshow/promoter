@@ -45,8 +45,8 @@ module Promoter
     end
 
     def self.auth_header
-      if Promoter.api_key.empty?
-        raise Unauthorized.new("You need to set your promoter api key. You can register for a Promoter API key with a Promoter.io Account.")
+      if Promoter.api_key.nil?
+        raise Errors::Unauthorized.new("You need to set your promoter api key. You can register for a Promoter API key with a Promoter.io Account.")
       end
       { "Authorization" => "Token #{Promoter.api_key}",
         'Content-Type' => 'application/json' }

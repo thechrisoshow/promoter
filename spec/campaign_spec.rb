@@ -1,11 +1,10 @@
 require 'spec_helper'
 
 describe Promoter::Campaign do
-
-  it 'returns all campaigns' do
-    stub_request(:get, "https://app.promoter.io/api/campaigns/?page=1").
+  it 'returns all campaigns paginated' do
+    stub_request(:get, "https://app.promoter.io/api/campaigns/?page=2").
          to_return(status: 200, body: fixture('campaigns.json'))
-    result = Promoter::Campaign.all
+    result = Promoter::Campaign.all(page: 2)
 
     expect(result.count).to eq(1)
 
@@ -20,6 +19,17 @@ describe Promoter::Campaign do
     expect(first_result.eligible_count).to eq(5)
     expect(first_result.last_surveyed_date).to eq(Time.parse("2014-10-10T12:00:00Z"))
     expect(first_result.launch_date).to eq(nil)
+  end
+
+  it 'returns all campaigns paginated (deprecated style)' do
+    stub_request(:get, "https://app.promoter.io/api/campaigns/?page=2").
+         to_return(status: 200, body: fixture('campaigns.json'))
+    result = Promoter::Campaign.all(2)
+
+    expect(result.count).to eq(1)
+
+    expect(result.class).to eq(Array)
+    expect(result[0].class).to eq(Promoter::Campaign)
   end
 
   it 'sends surveys' do

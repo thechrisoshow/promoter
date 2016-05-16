@@ -17,8 +17,20 @@ module Promoter
       @launch_date = Time.parse(attrs["launch_date"]) if attrs["launch_date"]
     end
 
-    def self.all(page=1)
-      response = Request.get("#{API_URL}/?page=#{page}")
+    # Parameter     Optional?  Description
+    # page	        yes	       Returns which page of results to return.
+    #                          Defaults to 1
+    def self.all(options={})
+      if !options.is_a?(Hash)
+        puts "-- DEPRECATION WARNING--"
+        puts "Passing in a number as a page is deprecated and will be removed from future versions of this gem.\nInstead pass in a hash of attributes.\n\n e.g. Promoter::Campaign.all(page: 2)"
+        query_string = "page=#{options}"
+      else
+        # default to first page
+        options[:page] ||= 1
+        query_string = URI.encode_www_form(options)
+      end
+      response = Request.get("#{API_URL}/?#{query_string}")
       response['results'].map {|attrs| new(attrs)}
     end
 

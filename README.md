@@ -33,7 +33,7 @@ Promoter.api_key = 'YOUR API KEY'
 
 ```ruby
 Promoter::Feedback.all(score: 8) # => returns all feedback with a score of 8
-# this is paginated. Pass page: 2 to get the second page 
+# this is paginated. Pass page: 2 to get the second page
 # (I know, this is different from the other api calls! This will be fixed in later versions)
 ```
 
@@ -54,7 +54,12 @@ Promoter::Feedback.find(79) #=> id of the feedback to return
 ### Get all contacts
 
 ```ruby
-Promoter::Contact.all(2) # => this is paginated - returns page 2 of results
+Promoter::Contact.all(page: 2) # => this is paginated - returns page 2 of results
+```
+
+To find the a contact by an email pass in the ```email``` option:
+```ruby
+Promoter::Contact.all(email: "chris@lexoo.co.uk")
 ```
 
 ### Get a specific contact
@@ -103,7 +108,7 @@ Promoter::Campaign.create(name: "Campaign Name",    # required
 ### Get all campaigns
 
 ```ruby
-Promoter::Campaign.all(2) # => this is paginated - returns page 2 of results
+Promoter::Campaign.all(page: 2) # => this is paginated - returns page 2 of results
 ```
 
 ### Send surveys for a campaign
