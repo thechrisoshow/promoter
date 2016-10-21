@@ -19,10 +19,11 @@ module Promoter
       Contact.destroy(self.email)
     end
 
-    # Parameter     Optional?  Description
-    # page	        yes	       Returns which page of results to return.
-    #                          Defaults to 1
-    # email         yes        Filter the results by email address.
+    # Parameter         Optional?  Description
+    # page	            yes	       Returns which page of results to return. Defaults to 1
+    #
+    # email             yes        Filter the results by email address.
+    # contact_list_id   yes        Filter the results by contact list
     def self.all(options={})
       if !options.is_a?(Hash)
         puts "-- DEPRECATION WARNING--"
@@ -31,10 +32,15 @@ module Promoter
       else
         # default to first page
         options[:page] ||= 1
+
+        if options.key?(:contact_list_id)
+          options[:contact_list__id] = options.delete(:contact_list_id)
+        end
+
         query_string = URI.encode_www_form(options)
       end
       response = Request.get("#{API_URL}/?#{query_string}")
-      response['results'].map {|attrs| new(attrs)}
+      response['results'].map { |attrs| new(attrs) }
     end
 
     def self.find(id)
