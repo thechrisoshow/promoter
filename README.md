@@ -143,20 +143,20 @@ Promoter::ContactList.contact_ids_for(2)
 
 ```ruby
 Promoter::ContactList.remove_contact(contact_list_id: 7899,
-                                     contact_id: 15777)  
+                                     contact_id: 15777)
 ```
 
 ### Remove a contact from a contact list by email
 
 ```ruby
-Promoter::ContactList.remove_contact(email: "me@me.com",
-                                     contact_id: 15777)  
+Promoter::ContactList.remove_contact(contact_list_id: 7899,
+                                     email: "me@me.com")
 ```
 
 ### Remove a contact from all contact lists
 
 ```ruby
-Promoter::ContactList.remove_contact(contact_id: 15777)  
+Promoter::ContactList.remove_contact(contact_email: "me@me.com")
 ```
 
 ## Email Templates
