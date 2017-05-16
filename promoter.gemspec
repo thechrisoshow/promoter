@@ -8,6 +8,7 @@ Gem::Specification.new do |spec|
   spec.version       = Promoter::VERSION
   spec.authors       = ["Chris O'Sullivan"]
   spec.email         = ["thechrisoshow@gmail.com"]
+  spec.homepage      = "https://developers.promoter.io/"
 
   spec.summary       = %q{promoter is a wrapper for the promoter.io REST API}
   spec.license       = "MIT"
