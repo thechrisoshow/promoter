@@ -75,14 +75,24 @@ module Promoter
     #                          be added correctly. Otherwise, the contact will
     #                          be associated to a default generated contact list
     #                          for your given organization.
-    def self.create(attributes)
-      response = Request.post(API_URL + "/", attributes)
+    def self.create(params)
+      # ensure the values of the 'attributes' param are strings
+      if params[:attributes]
+        params[:attributes] = values_to_string(params[:attributes])
+      end
+
+      response = Request.post(API_URL + "/", params)
       new(response)
     end
 
-    def self.survey(attributes)
-      response = Request.post(API_URL + "/survey/", attributes)
+    def self.survey(params)
+      response = Request.post(API_URL + "/survey/", params)
       new(response)
+    end
+
+    # used for ensuring the values of the attributes hashes are strings
+    def self.values_to_string(hash)
+      hash.each{ |key, value| hash[key] = value.to_s }
     end
 
   end

@@ -82,6 +82,25 @@ describe Promoter::Contact do
     expect(contact.email).to eq("chris@lexoo.co.uk")
   end
 
+  it 'users string values for contact attributes' do
+    expected_params = {
+      email: 'chris@lexoo.co.uk',
+      attributes: {
+        starred: 'true'
+      }
+    }
+
+    stub_request(:post, "https://app.promoter.io/api/contacts/").
+        with(body: expected_params.to_json).
+        to_return(status: 200, body: fixture('single_contact.json'))
+
+    attributes = {
+      starred: true
+    }
+    Promoter::Contact.create(email: "chris@lexoo.co.uk",
+                             attributes: attributes)
+  end
+
   it 'deletes a contact' do
     stub_request(:get, "https://app.promoter.io/api/contacts/3162232").
          to_return(status: 200, body: fixture('single_contact.json'))
