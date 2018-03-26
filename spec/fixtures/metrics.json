@@ -4,7 +4,7 @@
     "previous": null,
     "results": [
         {
-            "campaign": "My Campaign",
+            "campaign_name": "My Campaign",
             "nps": "50.0",
             "organization_nps": "35.0"
         }
