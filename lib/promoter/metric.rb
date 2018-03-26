@@ -12,8 +12,9 @@ module Promoter
       @organization_nps = attrs["organization_nps"].to_f
     end
 
-    def self.all
-      response = Request.get("#{API_URL}/")
+    def self.all(options={})
+      query_string = URI.encode_www_form(options)
+      response = Request.get("#{API_URL}/?#{query_string}")
       response['results'].map {|attrs| new(attrs)}
     end
 
