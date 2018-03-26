@@ -7,7 +7,7 @@ module Promoter
     API_URL = "https://app.promoter.io/api/metrics"
 
     def initialize(attrs)
-      @campaign_name = attrs["campaign"]
+      @campaign_name = attrs["campaign_name"]
       @nps = attrs["nps"].to_f
       @organization_nps = attrs["organization_nps"].to_f
     end

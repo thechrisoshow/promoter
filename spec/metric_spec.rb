@@ -4,7 +4,7 @@ describe Promoter::Metric do
 
   it 'returns all metrics' do
     stub_request(:get, "https://app.promoter.io/api/metrics/").
-         to_return(status: 204, body: fixture('metrics.json'))
+         to_return(status: 200, body: fixture('metrics.json'))
     result = Promoter::Metric.all
 
     expect(result.count).to eq(1)
