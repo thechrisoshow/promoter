@@ -99,7 +99,7 @@ module Promoter
           campaign_id: params[:campaign_id],
           contact: contact_params,
         }
-        response = Request.post(api_url + "/survey/", params)
+        response = Request.post(api_url + "/survey/", survey_params)
 
         response["contact"]
       else
