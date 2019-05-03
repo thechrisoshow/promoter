@@ -12,5 +12,6 @@ module Promoter
   class << self
     attr_accessor :api_key
     attr_accessor :debug
+    attr_accessor :api_version
   end
 end

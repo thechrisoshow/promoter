@@ -86,8 +86,14 @@ module Promoter
     end
 
     def self.survey(params)
-      response = Request.post(API_URL + "/survey/", params)
-      new(response)
+      contact_attributes = if Promoter.api_version == 2
+        api_url = "https://app.promoter.io/api/v2"
+        response = Request.post(api_url + "/survey/", params)
+        response["contact"]
+      else
+        Request.post(API_URL + "/survey/", params)
+      end
+      new(contact_attributes)
     end
 
     # used for ensuring the values of the attributes hashes are strings
