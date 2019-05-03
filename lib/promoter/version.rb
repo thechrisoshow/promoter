@@ -1,3 +1,3 @@
 module Promoter
-  VERSION = "0.2.0"
+  VERSION = "0.9.0"
 end

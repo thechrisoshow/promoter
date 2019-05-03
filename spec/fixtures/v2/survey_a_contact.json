@@ -1,0 +1,14 @@
+{
+  "campaign": 99,
+  "contact": {
+    "email": "chris@mac.com",
+    "first_name": "Chris",
+    "last_name": "O'Sullivan",
+    "attributes": {
+      "customer_id": "7"
+    }
+  },
+  "attributes": {
+    "product": "Box of apples"
+  }
+}
