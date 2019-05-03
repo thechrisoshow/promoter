@@ -88,7 +88,19 @@ module Promoter
     def self.survey(params)
       contact_attributes = if Promoter.api_version == 2
         api_url = "https://app.promoter.io/api/v2"
+        contact_params = {
+          attributes: params[:attributes],
+          email: params[:email],
+          first_name: params[:first_name],
+          last_name: params[:last_name]
+        }
+        survey_params = {
+          attributes: params[:survey_attributes],
+          campaign_id: params[:campaign_id],
+          contact: contact_params,
+        }
         response = Request.post(api_url + "/survey/", params)
+
         response["contact"]
       else
         Request.post(API_URL + "/survey/", params)
