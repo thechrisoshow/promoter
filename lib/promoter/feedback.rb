@@ -4,7 +4,7 @@ module Promoter
 
     attr_reader :id, :contact, :score, :score_type, :posted_date, :comment,
                 :follow_up_url, :url, :comment_updated_date, :status,
-                :score_modified
+                :score_created, :score_modified
 
     API_URL =  "https://app.promoter.io/api/feedback"
 
@@ -21,7 +21,14 @@ module Promoter
       @follow_up_url = attrs["followup_href"]
       @follow_up_href = attrs["href"]
       @status = attrs["status"]
-      @score_modified = attrs["score_modified"]
+      if attrs["score_created"]
+        @score_created = Time.parse(attrs["score_created"])
+      end
+      if attrs["score_modified"]
+        @score_modified = Time.parse(attrs["score_modified"])
+      end
+
+
     end
 
     # Parameter                 Required Description
