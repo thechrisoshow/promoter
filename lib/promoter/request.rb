@@ -8,20 +8,26 @@ module Promoter
     include HTTParty
     extend Errors
 
+    def self.delete(url)
+      response = HTTParty.delete(url, headers: auth_header)
+      parse_response(response)
+    end
+
     def self.get(url)
       response = HTTParty.get(url, headers: auth_header)
       parse_response(response)
+    end
+
+    def self.put(url, params)
+      response_format = params.delete(:response_format) || :json
+      response = HTTParty.put(url, body: params.to_json, headers: auth_header)
+      parse_response(response, response_format)
     end
 
     def self.post(url, params)
       response_format = params.delete(:response_format) || :json
       response = HTTParty.post(url, body: params.to_json, headers: auth_header)
       parse_response(response, response_format)
-    end
-
-    def self.delete(url)
-      response = HTTParty.delete(url, headers: auth_header)
-      parse_response(response)
     end
 
     private
