@@ -24,10 +24,10 @@ module Promoter
     # 429	Too Many Requests – You’re requesting too much! Slown down!
     # 500	Internal Server Error – We had a problem with our server. Try again later.
     # 503	Service Unavailable – We’re temporarially offline for maintanance. Please try again later.
-    def check_for_error(status_code)
+    def check_for_error(status_code, response_body)
       case status_code.to_i
       when 400
-        raise BadRequest.new("Something is wrong with your request")
+        raise BadRequest.new(response_body)
       when 401
         raise Unauthorized.new("Your API key is incorrect or invalid")
       when 403
